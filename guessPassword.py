@@ -20,21 +20,21 @@ class GuessPasswordTests(unittest.TestCase):
         def fnGetFitness(genes):
             return get_fitness(genes, target)
 
-        def fnDisplay(genes):
-            display(genes, target, startTime)
+        def fnDisplay(candidate):
+            display(candidate, startTime)
 
         optimalFitness = len(target)
-        genetic.get_best(fnGetFitness, len(target), optimalFitness, self.geneSet, fnDisplay)
+        best = genetic.get_best(fnGetFitness, len(target), optimalFitness, self.geneSet, fnDisplay)
 
+        self.assertEqual(best.Genes, target)
 
 def get_fitness(genes, target):
     return sum(1 for expected, actual in zip(target, genes) if expected == actual)
 
 
-def display(genes, target, startTime):
+def display(candidate, startTime):
     timeDiff = datetime.datetime.now() - startTime
-    fitness = get_fitness(genes, target)
-    print("{}\t{}\t{}".format(genes, fitness, timeDiff))
+    print("{}\t{}\t{}".format(candidate.Genes, candidate.Fitness, timeDiff))
 
 if __name__ == '__main__':
     unittest.main()
