@@ -6,6 +6,10 @@ import unittest
 class GuessPasswordTests(unittest.TestCase):
     geneSet = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!."
 
+    def test_For_I_am_fearfully_and_wonderfully_made(self):
+        target = "For I am fearfully and wonderfully made."
+        self.guess_password(target)
+
     def test_Hello_World(self):
         target = "Hello World!"
         self.guess_password(target)
