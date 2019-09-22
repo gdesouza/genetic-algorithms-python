@@ -2,17 +2,26 @@
 import datetime
 import genetic
 import unittest
+import random
 
 class GuessPasswordTests(unittest.TestCase):
     geneSet = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!."
 
-    def test_For_I_am_fearfully_and_wonderfully_made(self):
-        target = "For I am fearfully and wonderfully made."
+    def randomTest(self):
+        length = 150
+        target = ''.join(random.choice(self.geneSet) for _ in range (length))
         self.guess_password(target)
 
-    def test_Hello_World(self):
-        target = "Hello World!"
-        self.guess_password(target)
+    # def test_For_I_am_fearfully_and_wonderfully_made(self):
+    #     target = "For I am fearfully and wonderfully made."
+    #     self.guess_password(target)
+
+    # def test_Hello_World(self):
+    #     target = "Hello World!"
+    #     self.guess_password(target)
+
+    def test_benchmark(self):
+        genetic.Benchmark.run(self.randomTest)
 
     def guess_password(self, target):
         startTime = datetime.datetime.now()
